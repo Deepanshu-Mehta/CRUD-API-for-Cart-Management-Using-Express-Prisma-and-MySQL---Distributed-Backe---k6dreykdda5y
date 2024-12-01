@@ -38,7 +38,7 @@ const updateCart = async(req,res)=>{
         if(!count){
             return res.status(404).json({message: "Invalid body"});
         }
-        const product = await prisma.cart.findUnique({where : {cartId : id}});
+        const product = await prisma.cart.findUnique({where : {cartId : parseInt(id)}});
         if(!product){
             return res.status(404).json({error: "Cart not found"})
         }
@@ -55,7 +55,7 @@ const updateCart = async(req,res)=>{
 
 const deleteItem = async(req,res)=>{
     const {id} = req.params.id;
-    const product = await prisma.Cart.findUnique({where : {userId: id}});
+    const product = await prisma.Cart.findUnique({where : {userId: parseInt(id)}});
     if(!product){
         return res.status(404).json({});
     }
