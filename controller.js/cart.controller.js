@@ -20,7 +20,7 @@ const addProduct = async (req,res)=>{
 const getById = async(req,res)=>{
     try{
     const {id} = req.params.id;
-    const product = await prisma.cart.findUnique({where : {cartId : id}});
+    const product = await prisma.cart.findUnique({where : {cartId : parseInt(id)}});
     if(!product){
         return res.status(404).json({error: "Cart not found"})
     }
